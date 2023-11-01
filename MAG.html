@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masjid Agung Demak</title>
+  </head>
+  <body onload="changeBackgroundAndImage()">
+    <canvas id="world" width="1000" height="500" style="border: 1px solid black"></canvas>
+    <input type="hidden" id="sunOrMoon" value="sun" />
+    <script>
+      let canvas = document.getElementById("world");
+      let context = canvas.getContext("2d");
+      canvas.addEventListener("click", function () {
+        changeBackgroundAndImage();
+      }); // rumput
+      context.fillStyle = "green";
+      context.fillRect(0, canvas.height / 2 + 150, canvas.width, canvas.height);
+
+      //ujung
+      context.save();
+      context.beginPath();
+      context.moveTo(canvas.width / 2 + 0, canvas.height / 30);
+      context.lineTo(canvas.width / 2 + 12, canvas.height / 2 - 175);
+      context.lineTo(canvas.width / 2 - 12, canvas.height / 2 - 175);
+      context.lineTo(canvas.width / 2 - 0, canvas.height / 30);
+      let gr = context.createLinearGradient(canvas.width / 2 - 75, canvas.height / 2 - 130, canvas.width / 2 + 75, canvas.height / 2 - 130);
+      gr.addColorStop(0, "orange");
+      gr.addColorStop(1, "red");
+      context.fillStyle = gr;
+      context.fill();
+      context.stroke();
+      context.restore();
+
+      //atap1
+      context.beginPath();
+      context.moveTo(canvas.width / 2 + 10, canvas.height / 7);
+      context.lineTo(canvas.width / 2 + 75, canvas.height / 2 - 130);
+      context.lineTo(canvas.width / 2 - 75, canvas.height / 2 - 130);
+      context.lineTo(canvas.width / 2 - 10, canvas.height / 7);
+      let grd = context.createLinearGradient(canvas.width / 2 - 75, canvas.height / 2 - 130, canvas.width / 2 + 75, canvas.height / 2 - 130);
+      grd.addColorStop(0, "#626262");
+      grd.addColorStop(1, "#141414");
+      context.fillStyle = grd;
+      context.fill();
+      context.stroke();
+
+      //jeda
+      context.beginPath();
+      context.moveTo(canvas.width / 2 + 75, canvas.height / 2 - 130);
+      context.lineTo(canvas.width / 2 + 50 + 1, canvas.height / 2 - 119);
+      context.lineTo(canvas.width / 2 - 50 - 1, canvas.height / 2 - 119);
+      context.lineTo(canvas.width / 2 - 75, canvas.height / 2 - 130);
+      context.fillStyle = "teal";
+      context.fill();
+      context.stroke();
+
+      //atap2
+      context.save();
+
+      context.beginPath();
+      context.moveTo(canvas.width / 2 + 50, canvas.height / 7 + 60);
+      context.lineTo(canvas.width / 2 + 100 + 40, canvas.height / 2 - 50);
+      context.lineTo(canvas.width / 2 - 100 - 40, canvas.height / 2 - 50);
+      context.lineTo(canvas.width / 2 - 50, canvas.height / 7 + 60);
+      let grd2 = context.createLinearGradient(canvas.width / 2 - 100, canvas.height / 2 - 80, canvas.width / 2 + 100, canvas.height / 2 - 80);
+      grd2.addColorStop(0, "#626262");
+      grd2.addColorStop(1, "#141414");
+      context.fillStyle = grd2;
+      context.fill();
+      context.stroke();
+      context.restore();
+
+      // atap3
+      context.beginPath();
+      context.moveTo(canvas.width / 2 - 200, canvas.height / 2 - 50);
+      context.lineTo(100, canvas.height / 2 + 50);
+      context.lineTo(canvas.width - 100, canvas.height / 2 + 50);
+      context.lineTo(canvas.width / 2 + 200, canvas.height / 2 - 50);
+      let grd3 = context.createLinearGradient(canvas.width / 2 - 100, canvas.height / 2 - 80, canvas.width / 2 + 100, canvas.height / 2 - 80);
+      grd3.addColorStop(0, "#626262");
+      grd3.addColorStop(1, "#141414");
+      context.fillStyle = grd3;
+      context.fill();
+      context.stroke();
+
+      // nutup ujung
+      context.beginPath();
+      context.moveTo(490, 73);
+      context.lineTo(510, 73);
+      context.stroke();
+
+      // nutup atap3
+      context.beginPath();
+      context.moveTo(300, 200);
+      context.lineTo(700, 200);
+      context.stroke();
+
+      function createWall(x, y, width, height, color1, color2) {
+        context.beginPath();
+        context.rect(x, y, width, height);
+        context.lineWidth = width / 10;
+        let grd = context.createLinearGradient(x, y, x + width, y + height);
+        grd.addColorStop(0, color1);
+        grd.addColorStop(1, color2);
+        context.fillStyle = grd;
+        context.fill();
+      }
+
+      createWall(300, canvas.height / 2 + 70, 400, 100, "#6C6C6C", "#333333");
+      createWall(100, canvas.height / 2, 200, 250, "#E97C7C", "#C82424");
+      createWall(canvas.width / 2 + 200, canvas.height / 2, 200, 250, "#E97C7C", "#C82424");
+      createWall(300, canvas.height / 2 + 50, 400, 20, "#99C4A1", "#99C4A1");
+      createWall(canvas.width / 2 - 70, canvas.height / 2 + 50, 20, 120, "#99C4A1", "#99C4A1");
+      createWall(canvas.width / 2 + 50, canvas.height / 2 + 50, 20, 120, "#99C4A1", "#99C4A1");
+      createWall(300, 420, 400, 15, "#E3FF29", "#525E05");
+      createWall(300, 430, 400, 20, "#E3FF29", "#525E05");
+
+      //nutup tangga1
+      context.beginPath();
+      context.moveTo(300, 430);
+      context.lineTo(700, 430);
+      context.lineWidth = 2;
+      context.stroke();
+      //nutup tangga2
+      context.beginPath();
+      context.moveTo(300, 420);
+      context.lineTo(700, 420);
+      context.lineWidth = 2;
+      context.stroke();
+      //nutup tangga3
+      context.beginPath();
+      context.moveTo(300, 450);
+      context.lineTo(700, 450);
+      context.lineWidth = 2;
+      context.stroke();
+
+      function door(x, y, x2, y2) {
+        context.fillStyle = "brown";
+        context.fillRect(x, y + 100, 30, 70);
+
+        context.fillStyle = "yellow";
+        context.beginPath();
+        context.arc(x2, y2, 3, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      door(canvas.width / 2, canvas.height / 2, canvas.width / 2 + 6, canvas.height / 2 + 140);
+      door(canvas.width / 2 - 31, canvas.height / 2, canvas.width / 2 - 8, canvas.height / 2 + 140);
+
+      // Tulisan
+      context.fillStyle = "black";
+      context.font = "15px Arial";
+      context.fillStyle = "#136AB7";
+      context.fillText("Masjid Agung Demak", canvas.width / 2 - 70, 315, 200);
+
+      function changeBackgroundAndImage() {
+        let sunOrMoon = document.getElementById("sunOrMoon");
+        if (sunOrMoon.value == "sun") {
+          canvas.style.background = "skyblue";
+          drawSunOrMoon(100, 70, 50, "yellow", false);
+          sunOrMoon.value = "moon"; // hapus bulan
+        } else {
+          context.clearRect(50, 20, 100, 100);
+          canvas.style.background = "gray";
+          drawSunOrMoon(100, 70, 50, "gold", true);
+          sunOrMoon.value = "sun";
+        }
+      }
+
+      function drawSunOrMoon(x, y, r, color, crescent) {
+        context.fillStyle = color;
+        context.beginPath();
+        context.arc(x, y, 50, 0, Math.PI * 2);
+        if (crescent) {
+          context.fillStyle = "gold";
+          context.beginPath();
+          context.arc(x, y, 30, 0, Math.PI * 2);
+          context.fill();
+        }
+        context.fill();
+      }
+    </script>
+  </body>
+</html>
